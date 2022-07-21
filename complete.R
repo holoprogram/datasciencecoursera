@@ -1,4 +1,6 @@
 
+
+## my first answer to function 2
 complete <- function(directory, id=1:332){
         ## 'directory' is a character vector of length 1
         ## indicating the location of the CSV files
@@ -18,10 +20,19 @@ complete <- function(directory, id=1:332){
         dat <- data.frame()
         for(i in id){
                 dtread <- read.csv(files_full[i])
-                c <- dtread[, 'sulfate']
-                gn <- !is.na(dtread[, 'sulfate'])
-                r <- c[gn]
-                dat <- rbind(dat,c(i,length(r)))
+                
+                
+                # This is where it goes wrong, complete cases means rows that 
+                # sulfate and nitrate both have values, but there I just 
+                # calculate on,which will get more
+                
+                # c <- dtread[, 'sulfate']
+                # gn <- !is.na(dtread[, 'sulfate']) 
+                
+                # right anwser is
+                nobs <- sum(complete.cases(dtread))
+                dat <- rbind(dat,data.frame(i,nobs))
+                
         }
         
         ## set colnames
@@ -29,3 +40,6 @@ complete <- function(directory, id=1:332){
         dat
 
 }
+# thanks to complete.cases() 
+
+
