@@ -25,4 +25,3 @@ corr <- function(directory, threshold = 0){
         r
 }
 
-# get some changes to push the code to github
